@@ -1,0 +1,428 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* css for ticket section======================================================= */
+.ticket-dashboard {
+  padding: 20px;
+}
+.ticket-title {
+  text-align: center;
+  padding: 15px 0;
+  position: relative;
+}
+
+.ticket-title h1 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #007bff;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.ticket-title h1::after {
+  content: "";
+  width: 80px;
+  height: 4px;
+  background: #007bff;
+  display: block;
+  margin: 8px auto 0;
+  border-radius: 2px;
+}
+
+.ticket-title i {
+  margin-right: 10px;
+  font-size: 32px;
+  color: #ff9800;
+}
+
+/* Open & Close Buttons */
+.openclose-btns {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+.status-btn {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.number-badge {
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  display: inline-block;
+  min-width: 25px;
+  text-align: center;
+}
+.blue-badge {
+  background-color: #007bff;
+}
+
+.grey-badge {
+  background-color: #777;
+}
+/* Table Styling */
+.ticket-table .div-table {
+  overflow: auto;
+}
+.ticket-table table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 12px;
+  margin-top: 20px;
+}
+.ticket-table th,
+.ticket-table td {
+  padding: 0px 12px;
+  text-align: left;
+  border: none;
+}
+.ticket-table th {
+  color: #555555;
+  font-size: 15px;
+  background-color: transparent;
+}
+.ticket-table td {
+  border: 1px solid #eee;
+  background-color: #ffffff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  font-size: 14px;
+}
+.status-text {
+  background-color: black;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+.action-icons {
+  display: flex;
+  gap: 5px;
+}
+.action-icons button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  transition: 0.3s;
+  font-size: 14px;
+  color: #000;
+}
+
+.edit-btn:hover i {
+  color: #007bff;
+  transform: scale(1.2);
+}
+
+.delete-btn:hover i {
+  color: rgb(207, 32, 32);
+  transform: scale(1.2);
+}
+
+/* css for left-border */
+.left-border {
+  position: relative;
+  padding-left: 10px;
+}
+
+td[class*="color-"]::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 8px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.color-0::before {
+  background-color: red;
+}
+.color-1::before {
+  background-color: yellow;
+}
+.color-2::before {
+  background-color: #1abc9c;
+}
+.color-3::before {
+  background-color: #f39c12;
+}
+.color-4::before {
+  background-color: #3498db;
+}
+
+/* media query for my ticket page */
+@media (max-width: 768px) {
+  .openclose-btns {
+    margin-top: 20px;
+    justify-content: start;
+  }
+  .ticket-title {
+    padding: 10px 0;
+  }
+
+  .ticket-title h1 {
+    font-size: 28px;
+    letter-spacing: 1px;
+    padding-bottom: 8px;
+  }
+
+  .ticket-title h1::after {
+    width: 60px;
+    height: 3px;
+  }
+
+  .ticket-title i {
+    font-size: 26px;
+  }
+}
+
+/*---- css for add and filter page-------- */
+
+.active-btn {
+  background-color: #d32f2f !important;
+  box-shadow: 0 0 5px rgba(66, 6, 6, 0.7);
+  transform: scale(1.05);
+}
+.top-btns {
+  display: flex;
+  justify-content: end;
+  margin-top: 10px;
+}
+
+.top-btns button {
+  margin-right: 10px;
+  background-color: #007bff;
+  border: none;
+  color: #fff;
+  padding: 5px 8px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.add-btn,
+.filter-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.add-btn:hover,
+.filter-btn:hover {
+  background: #0056b3;
+}
+@media (max-width: 768px) {
+  .top-btns {
+    margin-top: 20px;
+  }
+}
+/* -------CSS for Add Page---------- */
+.add-form-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  margin: auto;
+  margin-top: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.add-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.form-field label {
+  font-weight: bold;
+  font-size: 14px;
+  width: 120px;
+  /* text-align: right; */
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+textarea {
+  height: 80px;
+}
+.file-upload {
+  display: flex;
+  align-items: center;
+}
+
+.file-input {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.file-warning {
+  color: red;
+  font-size: 11px;
+  margin-top: 5px;
+  text-align: left;
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+.submit-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+  text-align: center;
+  width: auto;
+}
+
+.submit-btn:hover {
+  background: #218838;
+}
+/* ----------- Responsive Design ----------- */
+@media (max-width: 768px) {
+  .add-form-container {
+    width: 95%;
+    padding: 15px;
+  }
+  .form-field {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .form-field label {
+    text-align: left;
+    width: 100%;
+    font-size: 13px;
+    margin-bottom: 5px;
+  }
+
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    width: 100%;
+    font-size: 13px;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 10px;
+  }
+}
+/*-------- css for filter page-----------*/
+.filter-page {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  width: 40%;
+  margin: auto;
+  margin-top: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+.filter-heading h2 {
+  text-align: left;
+  font-size: 15px;
+  border-bottom: 1px solid #ccc;
+  padding: 5px 0px;
+  color: #000;
+}
+.filter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+.filter-field {
+  display: flex;
+  flex-direction: column;
+}
+.filter-field label {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 5px;
+  text-align: left;
+  color: #007bff;
+}
+.filter-field input,
+.filter-field select {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 100%;
+}
+.filter-btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+.apply-btn,
+.create-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.apply-btn:hover,
+.create-btn:hover {
+  background: #0056b3;
+}
+/* ----------- Responsive Design ----------- */
+@media (max-width: 768px) {
+  .filter-page {
+    width: 100%;
+    padding: 15px;
+    margin-top: 10px;
+  }
+  .apply-btn,
+  .create-btn {
+    padding: 5px 12px;
+    font-size: 13px;
+  }
+}
