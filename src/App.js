@@ -1,5 +1,6 @@
 import "./App.css";
 import { useState } from "react";
+import axios from "axios";
 
 function App() {
   // for my ticket area
@@ -16,6 +17,21 @@ function App() {
     tags: "",
   });
 
+  async function CreateTicket(){
+    try{
+      await axios.post(
+        "http://localhost:4000/createticket",
+        {
+          data: addFormData,
+        }       
+      )
+
+    }
+    catch(error){
+      console.log(error);
+    }
+  }
+
   // State for Filter Form
   const [filterData, setFilterData] = useState({
     ticketId: "",
@@ -24,6 +40,21 @@ function App() {
     priority: "",
     tagname: "",
   });
+
+  async function FilterTicket(){
+    try{
+      await axios.post(
+        "http://localhost:4000/createticket",
+        {
+          data: filterData,
+        }       
+      )
+
+    }
+    catch(error){
+      console.log(error);
+    }
+  }
 
   // Add Form Change
   const handleAddFormChange = (e) => {
