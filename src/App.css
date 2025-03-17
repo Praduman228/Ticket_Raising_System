@@ -2,23 +2,20 @@
   margin: 0;
   box-sizing: border-box;
 }
-
 body {
   font-family: Arial, sans-serif;
 }
-
 /* css for ticket section======================================================= */
 .ticket-dashboard {
   padding: 20px;
 }
 .ticket-title {
-  text-align: center;
-  padding: 15px 0;
+  /* text-align: center; */
+  /* padding: 15px 0; */
   position: relative;
 }
-
 .ticket-title h1 {
-  font-size: 36px;
+  font-size: 30px;
   font-weight: 700;
   color: #007bff;
   text-transform: uppercase;
@@ -28,7 +25,6 @@ body {
   padding-bottom: 10px;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
-
 .ticket-title h1::after {
   content: "";
   width: 80px;
@@ -38,18 +34,38 @@ body {
   margin: 8px auto 0;
   border-radius: 2px;
 }
-
 .ticket-title i {
   margin-right: 10px;
   font-size: 32px;
   color: #ff9800;
 }
-
+/* Category Buttons */
+.category-btns {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.category-btns button {
+  padding: 10px 15px;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  border-bottom: 1px solid #000;
+  font-weight: bold;
+  border-radius: 10px;
+}
+.category-btns .active {
+  border-bottom: 2px solid #007bff;
+  color: #007bff;
+  background-color: transparent;
+}
 /* Open & Close Buttons */
 .openclose-btns {
   display: flex;
   gap: 12px;
   justify-content: center;
+  margin-top: 20px;
 }
 .status-btn {
   border: none;
@@ -68,14 +84,53 @@ body {
   min-width: 25px;
   text-align: center;
 }
-.blue-badge {
-  background-color: #007bff;
+.orange-badge {
+  background-color: #ff9800;
 }
-
 .grey-badge {
   background-color: #777;
 }
 /* Table Styling */
+.ticket-table {
+  height: 200px;
+  overflow-y: auto;
+  margin: 10px 0px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #eee;
+}
+thead {
+  border-bottom: 2px solid #007bff;
+}
+
+.filter-container {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+.filter-input {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: border 0.3s;
+}
+.filter-input:focus {
+  border: 1px solid #007bff;
+}
+.clear-button {
+  margin-left: 5px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 2px 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+  border-radius: 3px;
+}
+.clear-button:hover {
+  background-color: #c82333;
+}
 .ticket-table .div-table {
   overflow: auto;
 }
@@ -83,11 +138,10 @@ body {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0 12px;
-  margin-top: 20px;
 }
 .ticket-table th,
 .ticket-table td {
-  padding: 0px 12px;
+  padding: 0px 8px;
   text-align: left;
   border: none;
 }
@@ -102,6 +156,9 @@ body {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   font-size: 14px;
+}
+th:last-of-type {
+  padding-bottom: 30px;
 }
 .status-text {
   background-color: black;
@@ -174,6 +231,7 @@ td[class*="color-"]::before {
   }
   .ticket-title {
     padding: 10px 0;
+    text-align: center;
   }
 
   .ticket-title h1 {
@@ -238,13 +296,35 @@ td[class*="color-"]::before {
 }
 /* -------CSS for Add Page---------- */
 .add-form-container {
-  background: #fff;
+  background: #eee;
   padding: 20px;
   border-radius: 8px;
   width: 80%;
   margin: auto;
   margin-top: 20px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+.add-form-container h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #007bff;
+  text-align: center;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  position: relative;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+}
+
+.add-form-container h2::after {
+  content: "";
+  width: 50px;
+  height: 3px;
+  background-color: #ff9800;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
 }
 
 .form-title {
