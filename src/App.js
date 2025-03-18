@@ -231,6 +231,9 @@ function App() {
             {" "}
             <i className="fa-solid fa-ticket"></i>My Ticket
           </h1>
+          <h2 className="ticket-profile">
+            <i class="fa-solid fa-user-tie"></i> John Smith
+          </h2>
         </div>
         {/* Category Buttons */}
         <div className="category-btns">

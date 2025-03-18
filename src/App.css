@@ -10,9 +10,10 @@ body {
   padding: 20px;
 }
 .ticket-title {
-  /* text-align: center; */
-  /* padding: 15px 0; */
+  height: 35px;
   position: relative;
+  display: flex;
+  justify-content: space-between;
 }
 .ticket-title h1 {
   font-size: 30px;
@@ -39,6 +40,30 @@ body {
   font-size: 32px;
   color: #ff9800;
 }
+.ticket-profile {
+  font-size: 15px;
+  font-weight: 600;
+  color: #444;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: rgba(0, 123, 255, 0.1);
+  border-radius: 6px;
+  border-left: 4px solid #007bff;
+  transition: all 0.3s ease-in-out;
+}
+
+.ticket-profile:hover {
+  background: rgba(0, 123, 255, 0.15);
+}
+
+.ticket-profile i {
+  font-size: 20px;
+  color: #007bff;
+  transition: transform 0.3s ease-in-out;
+}
+
 /* Category Buttons */
 .category-btns {
   display: flex;
@@ -230,12 +255,13 @@ td[class*="color-"]::before {
     justify-content: start;
   }
   .ticket-title {
+    height: 55px;
     padding: 10px 0;
     text-align: center;
   }
 
   .ticket-title h1 {
-    font-size: 28px;
+    font-size: 22px;
     letter-spacing: 1px;
     padding-bottom: 8px;
   }
@@ -247,6 +273,9 @@ td[class*="color-"]::before {
 
   .ticket-title i {
     font-size: 26px;
+  }
+  .category-btns {
+    margin-top: 20px;
   }
 }
 
