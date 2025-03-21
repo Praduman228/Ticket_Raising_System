@@ -1,11 +1,13 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import ApiEndpoints from "./endPoints"
 function App() {
   // for my ticket area
+  const Endpoints = new ApiEndpoints()
   const [activeTab, setActiveTab] = useState("open");
   const [activeCategory, setActiveCategory] = useState("all");
+  const [ticketcreatemsg, setTicketCreatemsg] = useState(null)
   const [searchQueries, setSearchQueries] = useState({
     ticketNo: "",
     title: "",
@@ -34,8 +36,8 @@ function App() {
 
   const fetchTickets = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/tickets");
-      setTickets(response.data);
+      const response = await axios.get(Endpoints.FETCH_TICKETS);
+      setTickets(response.data.data);
     } catch (error) {
       console.error("Error fetching tickets", error);
     }
@@ -43,7 +45,7 @@ function App() {
 
   async function CreateTicket() {
     try {
-      await axios.post("http://localhost:4000/createticket", addFormData);
+     const response= await axios.post(Endpoints.CREATE_TICKET, addFormData);
       fetchTickets();
     } catch (error) {
       console.log(error);
@@ -359,6 +361,7 @@ function App() {
         {/* add form  */}
         <div className="add-form-container">
           <h2>Add New Ticket</h2>
+          <p>{ticketcreatemsg}</p>
           <form className="add-form">
             <div className="form-field">
               <label htmlFor="subject">Subject:</label>
@@ -383,10 +386,10 @@ function App() {
                 required
               >
                 <option value="">Select Priority</option>
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
-                <option value="critical">Critical</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+                <option value="Critical">Critical</option>
               </select>
             </div>
 
@@ -400,9 +403,9 @@ function App() {
                 required
               >
                 <option value="">Select Status</option>
-                <option value="open">Open</option>
-                <option value="closed">Closed</option>
-                <option value="resolved">Resolved</option>
+                <option value="Open">Open</option>
+                <option value="Closed">Closed</option>
+                <option value="Resolved">Resolved</option>
               </select>
             </div>
 
@@ -416,13 +419,13 @@ function App() {
                 required
               >
                 <option value="">Select Group</option>
-                <option value="travel">Travel</option>
-                <option value="payroll">Payroll</option>
-                <option value="admin">Admin</option>
-                <option value="it-support">IT Support</option>
-                <option value="hr">HR</option>
-                <option value="reimbursement">Reimbursement</option>
-                <option value="pocket-hrms">Pocket HRMS</option>
+                <option value="Travel">Travel</option>
+                <option value="Payroll">Payroll</option>
+                <option value="Admin">Admin</option>
+                <option value="IT Supports">IT Support</option>
+                <option value="HR">HR</option>
+                <option value="Reimbursements">Reimbursement</option>
+                <option value="Pocket HRMS">Pocket HRMS</option>
               </select>
             </div>
 
@@ -469,7 +472,7 @@ function App() {
             </div>
 
             <div className="button-container">
-              <button type="submit" className="submit-btn">
+              <button type="submit" className="submit-btn" onClick={CreateTicket}>
                 Create
               </button>
             </div>
