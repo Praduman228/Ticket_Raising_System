@@ -18,6 +18,13 @@ function App() {
   });
   // State for tickets
   const [tickets, setTickets] = useState([]);
+  const formatDate = (isoDate) => {
+    const date = new Date(isoDate);
+    return date.toLocaleDateString("en-GB").split('/').join('-'); 
+  };
+  var openticketscount=(tickets.filter(tickets => tickets.status === "Open")).length
+  var resolvedticketscount=(tickets.filter(tickets => tickets.status === "Resolved")).length
+  var closedticketscount=(tickets.filter(tickets => tickets.status === "Closed")).length
 
   //  Add Form Api calling
   const [addFormData, setAddFormData] = useState({
@@ -32,7 +39,7 @@ function App() {
 
   useEffect(() => {
     fetchTickets();
-  }, []);
+  },);
 
   const fetchTickets = async () => {
     try {
@@ -46,7 +53,9 @@ function App() {
   async function CreateTicket() {
     try {
      const response= await axios.post(Endpoints.CREATE_TICKET, addFormData);
+     if (response.status===201){
       fetchTickets();
+     }
     } catch (error) {
       console.log(error);
     }
@@ -91,131 +100,132 @@ function App() {
   };
 
   //  ticket data
-  const ticketData = {
-    all: {
-      open: [
-        {
-          ticketNo: "101",
-          title: "Login Issue",
-          createdDate: "2024-03-05",
-          priority: "High",
-          agentAssigned: "John",
-        },
-        {
-          ticketNo: "103",
-          title: "App Crash",
-          createdDate: "2024-03-07",
-          priority: "Critical",
-          agentAssigned: "Emma",
-        },
-      ],
-      closed: [
-        {
-          ticketNo: "102",
-          title: "Payment Failure",
-          createdDate: "2024-03-06",
-          priority: "Low",
-          agentAssigned: "Mike",
-        },
-        {
-          ticketNo: "106",
-          title: "Bug in Checkout",
-          createdDate: "2024-03-10",
-          priority: "High",
-          agentAssigned: "David",
-        },
-        {
-          ticketNo: "107",
-          title: "Database Error",
-          createdDate: "2024-03-11",
-          priority: "Critical",
-          agentAssigned: "Olivia",
-        },
-      ],
-    },
-    myTickets: {
-      open: [
-        {
-          ticketNo: "201",
-          title: "My Ticket 1",
-          createdDate: "2024-03-02",
-          priority: "Medium",
-          agentAssigned: "Me",
-        },
-        {
-          ticketNo: "202",
-          title: "Software Update Issue",
-          createdDate: "2024-03-05",
-          priority: "High",
-          agentAssigned: "Me",
-        },
-        {
-          ticketNo: "203",
-          title: "Network Problem",
-          createdDate: "2024-03-07",
-          priority: "Low",
-          agentAssigned: "Me",
-        },
-      ],
-      closed: [
-        {
-          ticketNo: "204",
-          title: "Email Not Syncing",
-          createdDate: "2024-03-08",
-          priority: "Medium",
-          agentAssigned: "Me",
-        },
-      ],
-    },
-    assignedTickets: {
-      open: [
-        {
-          ticketNo: "301",
-          title: "User Authentication Failure",
-          createdDate: "2024-03-03",
-          priority: "High",
-          agentAssigned: "Alex",
-        },
-        {
-          ticketNo: "302",
-          title: "API Timeout",
-          createdDate: "2024-03-04",
-          priority: "Critical",
-          agentAssigned: "Alex",
-        },
-      ],
-      closed: [
-        {
-          ticketNo: "303",
-          title: "UI Design Issue",
-          createdDate: "2024-03-06",
-          priority: "Low",
-          agentAssigned: "Alex",
-        },
-        {
-          ticketNo: "304",
-          title: "Security Vulnerability",
-          createdDate: "2024-03-09",
-          priority: "Critical",
-          agentAssigned: "Alex",
-        },
-      ],
-    },
-  };
+  // const ticketData = {
+  //   all: {
+  //     open: [
+  //       {
+  //         ticketNo: "101",
+  //         title: "Login Issue",
+  //         createdDate: "2024-03-05",
+  //         priority: "High",
+  //         agentAssigned: "John",
+  //       },
+  //       {
+  //         ticketNo: "103",
+  //         title: "App Crash",
+  //         createdDate: "2024-03-07",
+  //         priority: "Critical",
+  //         agentAssigned: "Emma",
+  //       },
+  //     ],
+  //     closed: [
+  //       {
+  //         ticketNo: "102",
+  //         title: "Payment Failure",
+  //         createdDate: "2024-03-06",
+  //         priority: "Low",
+  //         agentAssigned: "Mike",
+  //       },
+  //       {
+  //         ticketNo: "106",
+  //         title: "Bug in Checkout",
+  //         createdDate: "2024-03-10",
+  //         priority: "High",
+  //         agentAssigned: "David",
+  //       },
+  //       {
+  //         ticketNo: "107",
+  //         title: "Database Error",
+  //         createdDate: "2024-03-11",
+  //         priority: "Critical",
+  //         agentAssigned: "Olivia",
+  //       },
+  //     ],
+  //   },
+  //   myTickets: {
+  //     open: [
+  //       {
+  //         ticketNo: "201",
+  //         title: "My Ticket 1",
+  //         createdDate: "2024-03-02",
+  //         priority: "Medium",
+  //         agentAssigned: "Me",
+  //       },
+  //       {
+  //         ticketNo: "202",
+  //         title: "Software Update Issue",
+  //         createdDate: "2024-03-05",
+  //         priority: "High",
+  //         agentAssigned: "Me",
+  //       },
+  //       {
+  //         ticketNo: "203",
+  //         title: "Network Problem",
+  //         createdDate: "2024-03-07",
+  //         priority: "Low",
+  //         agentAssigned: "Me",
+  //       },
+  //     ],
+  //     closed: [
+  //       {
+  //         ticketNo: "204",
+  //         title: "Email Not Syncing",
+  //         createdDate: "2024-03-08",
+  //         priority: "Medium",
+  //         agentAssigned: "Me",
+  //       },
+  //     ],
+  //   },
+  //   assignedTickets: {
+  //     open: [
+  //       {
+  //         ticketNo: "301",
+  //         title: "User Authentication Failure",
+  //         createdDate: "2024-03-03",
+  //         priority: "High",
+  //         agentAssigned: "Alex",
+  //       },
+  //       {
+  //         ticketNo: "302",
+  //         title: "API Timeout",
+  //         createdDate: "2024-03-04",
+  //         priority: "Critical",
+  //         agentAssigned: "Alex",
+  //       },
+  //     ],
+  //     closed: [
+  //       {
+  //         ticketNo: "303",
+  //         title: "UI Design Issue",
+  //         createdDate: "2024-03-06",
+  //         priority: "Low",
+  //         agentAssigned: "Alex",
+  //       },
+  //       {
+  //         ticketNo: "304",
+  //         title: "Security Vulnerability",
+  //         createdDate: "2024-03-09",
+  //         priority: "Critical",
+  //         agentAssigned: "Alex",
+  //       },
+  //     ],
+  //   },
+  // };
 
-  const currentTickets = ticketData[activeCategory];
-  const filteredTickets = currentTickets[activeTab].filter(
-    (ticket) =>
-      ticket.ticketNo.includes(searchQueries.ticketNo) &&
-      ticket.title.toLowerCase().includes(searchQueries.title.toLowerCase()) &&
-      ticket.createdDate.includes(searchQueries.createdDate) &&
-      ticket.priority
-        .toLowerCase()
-        .includes(searchQueries.priority.toLowerCase()) &&
-      ticket.agentAssigned
-        .toLowerCase()
-        .includes(searchQueries.agentAssigned.toLowerCase())
-  );
+  // const currentTickets = ticketData[activeCategory];
+  // const filteredTickets = currentTickets[activeTab].filter(
+  //   (ticket) =>
+  //     ticket.ticketNo.includes(searchQueries.ticketNo) &&
+  //     ticket.title.toLowerCase().includes(searchQueries.title.toLowerCase()) &&
+  //     ticket.createdDate.includes(searchQueries.createdDate) &&
+  //     ticket.priority
+  //       .toLowerCase()
+  //       .includes(searchQueries.priority.toLowerCase()) &&
+  //     ticket.agentAssigned
+  //       .toLowerCase()
+  //       .includes(searchQueries.agentAssigned.toLowerCase())
+  // );
+  
 
   const handleFilterChange = (column, value) => {
     setSearchQueries((prev) => ({ ...prev, [column]: value }));
@@ -267,7 +277,7 @@ function App() {
                 activeTab === "open" ? "orange-badge" : "grey-badge"
               }`}
             >
-              {currentTickets.open.length}
+              {openticketscount?openticketscount.toString():"0"}
             </span>{" "}
             Open
           </button>
@@ -277,7 +287,7 @@ function App() {
                 activeTab === "closed" ? "orange-badge" : "grey-badge"
               }`}
             >
-              {currentTickets.closed.length}
+              {closedticketscount?closedticketscount.toString():"0"}
             </span>{" "}
             Closed
           </button>
@@ -316,14 +326,15 @@ function App() {
                 </tr>
               </thead>
               <tbody>
-                {filteredTickets.length > 0 ? (
-                  filteredTickets.map((ticket, index) => (
+                {tickets.length > 0 ? (
+                  tickets.map((ticket, index) => (
                     <tr key={index}>
                       <td className={`left-border color-${index % 5}`}>
-                        &nbsp;{ticket.ticketNo}
+                        &nbsp;{ticket?.ticketId}
                       </td>
-                      <td>{ticket.title}</td>
-                      <td>{ticket.createdDate}</td>
+                      <td>{ticket?.subject}</td>
+    
+                      <td>{ticket.createdAt?formatDate(ticket.createdAt):"Loading.."}</td>
                       <td>
                         <span className="status-text">
                           {activeTab === "open" ? "Open" : "Closed"}
@@ -332,7 +343,7 @@ function App() {
                       <td className={`left-border color-${index % 5}`}>
                         &nbsp;{ticket.priority}
                       </td>
-                      <td>{ticket.agentAssigned}</td>
+                      <td>{ticket.assignedTo?ticket.assignedTo:"NA"}</td>
                       <td className="action-icons">
                         <button className="edit-btn">
                           <i className="fa-solid fa-pen-to-square"></i>
