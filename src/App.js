@@ -1,7 +1,9 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import ApiEndpoints from "./endPoints"
+import React from "react";
+
+import ApiEndpoints from "./endPoints.jsx"
 function App() {
   // for my ticket area
   const Endpoints = new ApiEndpoints()
